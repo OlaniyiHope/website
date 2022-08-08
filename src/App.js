@@ -11,7 +11,11 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "react-toastify/dist/ReactToastify.css"
+import { Homes } from "./pages/Homes";
+import { AddEditBlog } from "./pages/AddEditBlog";
+import { Blog } from "./pages/Blog";
+import { ToastContainer } from "react-toastify";
 function App() {
   const [load, upadateLoad] = useState(true);
 
@@ -24,12 +28,17 @@ useEffect(() => {
 
   return (
     <Router>
+      <ToastContainer />
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
         <ScrollToTop />
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/homes" element={<Homes />} />
+          <Route exact path="/addBlog" element={<AddEditBlog />} />
+          <Route exact path="/editBlog/:id" element={<AddEditBlog />} />
+          <Route exact path="/blog/:id" element={<Blog />} />
           <Route exact path="/project" element={<Projects />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/resume" element={<Resume />} />

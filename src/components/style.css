@@ -1,0 +1,41 @@
+.searchForm{
+    margin: auto;
+    padding: 15px;
+    max-width: 450px;
+    align-content: center;
+}
+.latest-title{
+    color: black;
+    font-weight: 600;
+    font-family: monospace;
+}
+@media screen and (max-width: 300px){
+    .love{
+        display: block;
+        width: 100%;
+    }
+    .latest-title{
+        color: black;
+        font-weight: 600;
+        font-family: monospace;
+    }
+
+}
+@media screen and (max-width: 600px){
+    .love{
+        display: block;
+        width: 100%;
+    }
+    .latest-title{
+        color: black;
+        font-weight: 600;
+        font-family: monospace;
+    }
+
+}
+@media screen and (max-width: 800px){
+    .love{
+        display: block;
+    }
+
+}
