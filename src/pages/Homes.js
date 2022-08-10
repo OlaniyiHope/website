@@ -16,6 +16,8 @@ import { LatestBlog } from '../components/LatestBlog'
 import styles from "./style.css"
 
 export const Homes = () => {
+const api = "http://localhost:5000/blogs";
+
   const [showNavColor, setShowNavColor] = useState(false);
 const [data, setData ] = useState([]);
 const [latestBlog, setLatestBlog] = useState([]);
@@ -26,7 +28,7 @@ loadBlogsData();
 fetchLatestBlog();
 }, [])
 const loadBlogsData = async () => {
-  const response = await axios.get("http://localhost:5000/blogs");
+  const response = await axios.get(api);
   if(response.status === 200) {
     setData(response.data)
   }else{
@@ -34,10 +36,10 @@ const loadBlogsData = async () => {
   }
 }
 const fetchLatestBlog = async () => {
-const totalBlog = await axios.get("http://localhost:5000/blogs");
+const totalBlog = await axios.get(api);
 const start = totalBlog.data.length - 4;
 const end = totalBlog.data.length;
-const response = await axios.get(`http://localhost:5000/blogs?_start=${start}&_end=${end}`);
+const response = await axios.get(`${api}?_start=${start}&_end=${end}`);
  if(response.status === 200) {
   setLatestBlog(response.data)
 }else{
@@ -48,7 +50,7 @@ console.log("data", data)
 const handleDelete = async (id) => {
   if(window.confirm("Are you sure you wanted to delete that blog ?")){
     
-      const response = await axios.delete(`http://localhost:5000/blogs/${id}`);
+      const response = await axios.delete(`${api}/${id}`);
       if(response.status === 200) {
        toast.success("Blog deleted successfully");
        loadBlogsData();
@@ -71,7 +73,7 @@ setSearchValue(e.target.value);
 }
 const handleSearch = async(e) => {
 e.preventDefault();
-const response = await axios.get(`http://localhost:5000/blogs?q=${searchValue}`);
+const response = await axios.get(`${api}?q=${searchValue}`);
 if(response.status === 200){
   setData(response.data)
 }else{
@@ -79,7 +81,7 @@ if(response.status === 200){
 }
 }
 const handleCategory = async (category) => {
-const response = await axios.get(`http://localhost:5000/blogs?category=${category}`);
+const response = await axios.get(`${api}?category=${category}`);
 if(response.status === 200){
   setData(response.data)
 }else{

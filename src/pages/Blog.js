@@ -8,6 +8,7 @@ import {MDBRow, MDBCol, MDBContainer, MDBTypography,
   import './style.css'
 import Footer from '../components/Footer'
 export const Blog = () => {
+  const api = "http://localhost:5000/blogs";
   const [blog, setBlog] = useState();
   const [relatedPost, setRelatedPost] = useState([]);
   const { id } = useParams();
@@ -19,8 +20,8 @@ export const Blog = () => {
 
 
   const getSingleBlog = async () => {
-    const response = await axios.get(`http://localhost:5000/blogs/${id}`);
-    const relatedPostData = await axios.get(`http://localhost:5000/blogs?category=${response.data.category}&_start=0&_end=3`);
+    const response = await axios.get(`${api}/${id}`);
+    const relatedPostData = await axios.get(`${api}?category=${response.data.category}&_start=0&_end=3`);
     setRelatedPost(relatedPostData.data);
     if(response.status === 200 || relatedPostData.status === 200) {
       setBlog(response.data);

@@ -14,6 +14,7 @@ const initialState = {
 
 const options = ["Music", "Sports", "Tech", "Memes", "News", "Food"]; 
 export const AddEditBlog = () => {
+    const api = "http://localhost:5000/blogs";
     const [formValue, setFormValue] = useState(initialState);
     const [categoryErrMsg, setCategoryErrMsg] = useState(null);
     const [editMode, setEditMode] = useState(false);
@@ -31,7 +32,7 @@ if(id){
 }
 }, [id]);
 const getSingleBlog = async (id) => {
-const singleBlog = await axios.get(`http://localhost:5000/blogs/${id}`);
+const singleBlog = await axios.get(`${api}/${id}`);
 if(singleBlog.status === 200){
     setFormValue({...singleBlog.data});
 }else{
@@ -59,7 +60,7 @@ const handleSubmit = async (e) => {
         const currentDate = getDate();
         if(!editMode){
             const updatedBlogData = {...formValue, date: currentDate};
-            const response = await axios.post("http://localhost:5000/blogs", updatedBlogData);
+            const response = await axios.post(api, updatedBlogData);
             if(response.status === 201) {
                 toast.success("Blog created successfully");
             }
@@ -67,7 +68,7 @@ const handleSubmit = async (e) => {
                 toast.error("something went wrong");
             }
         }else{
-            const response = await axios.put(`http://localhost:5000/blogs/${id}`, formValue);
+            const response = await axios.put(`${api}/${id}`, formValue);
             if(response.status === 200) {
                 toast.success("Blog Updated successfully");
             }
