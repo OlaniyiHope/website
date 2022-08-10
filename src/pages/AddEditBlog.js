@@ -139,7 +139,7 @@ const onCategoryChange = (e) => {
 
 <br></br>
 <select style={{width: "100%", borderRadius: "4px", height: "35px", borderColor: "#000"}} onChange={onCategoryChange} value={category}>
-<option>Please select category</option>
+<option>Please select Category</option>
 {options.map((option, index) => (
     <option value={option || ""} key={index}>{option}</option>
 ))}

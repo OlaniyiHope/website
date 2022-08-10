@@ -13,9 +13,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css"
 import { Homes } from "./pages/Homes";
-import { AddEditBlog } from "./pages/AddEditBlog";
 import { Blog } from "./pages/Blog";
 import { ToastContainer } from "react-toastify";
+import { AddEditBlog } from "./pages/AddEditBlog";
 function App() {
   const [load, upadateLoad] = useState(true);
 
