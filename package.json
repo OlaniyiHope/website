@@ -28,7 +28,7 @@
     "typewriter-effect": "^2.19.0",
     "web-vitals": "^0.2.4"
   },
-  "proxy": "http://localhost:3001",
+  
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -36,10 +36,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:dev": "node server.js",
     "server": "json-server --watch db.json --port 5000"
     
   },
+   "keywords": [
+    "json-server,heroku, node, REST API"
+  ],
   "eslintConfig": {
     "plugins": [
       "react-hooks"
