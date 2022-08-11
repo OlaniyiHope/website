@@ -32,7 +32,7 @@ if(id){
 }
 }, [id]);
 const getSingleBlog = async (id) => {
-const singleBlog = await axios.get(`https://olaniyihope.herokuapp.com/blogs/${id}`);
+const singleBlog = await axios.get(`http://localhost:5000/blogs/${id}`);
 if(singleBlog.status === 200){
     setFormValue({...singleBlog.data});
 }else{
@@ -60,7 +60,7 @@ const handleSubmit = async (e) => {
         const currentDate = getDate();
         if(!editMode){
             const updatedBlogData = {...formValue, date: currentDate};
-            const response = await axios.post("https://olaniyihope.herokuapp.com/blogs", updatedBlogData);
+            const response = await axios.post("http://localhost:5000/blogs", updatedBlogData);
             if(response.status === 201) {
                 toast.success("Blog created successfully");
             }
@@ -68,7 +68,7 @@ const handleSubmit = async (e) => {
                 toast.error("something went wrong");
             }
         }else{
-            const response = await axios.put(`https://olaniyihope.herokuapp.com/blogs/${id}`, formValue);
+            const response = await axios.put(`http://localhost:5000/blogs/${id}`, formValue);
             if(response.status === 200) {
                 toast.success("Blog Updated successfully");
             }
@@ -79,7 +79,7 @@ const handleSubmit = async (e) => {
        
        
         setFormValue({title: "", description: "", category: "", imageUrl: ""});
-        navigate("/homes");
+        navigate("/home");
     }
 };
 const onInputChange = (e) => {
@@ -139,7 +139,7 @@ const onCategoryChange = (e) => {
 
 <br></br>
 <select style={{width: "100%", borderRadius: "4px", height: "35px", borderColor: "#000"}} onChange={onCategoryChange} value={category}>
-<option>Please select Category</option>
+<option>Please select category</option>
 {options.map((option, index) => (
     <option value={option || ""} key={index}>{option}</option>
 ))}

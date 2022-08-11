@@ -16,9 +16,7 @@ import { LatestBlog } from '../components/LatestBlog'
 import styles from "./style.css"
 
 export const Homes = () => {
-
-
-  const [showNavColor, setShowNavColor] = useState(false);
+const [showNavColor, setShowNavColor] = useState(false);
 const [data, setData ] = useState([]);
 const [latestBlog, setLatestBlog] = useState([]);
 const [searchValue, setSearchValue] = useState("");
@@ -28,7 +26,7 @@ loadBlogsData();
 fetchLatestBlog();
 }, [])
 const loadBlogsData = async () => {
-  const response = await axios.get("https://olaniyihope.herokuapp.com/blogs");
+  const response = await axios.get("http://localhost:5000/blogs");
   if(response.status === 200) {
     setData(response.data)
   }else{
@@ -36,10 +34,10 @@ const loadBlogsData = async () => {
   }
 }
 const fetchLatestBlog = async () => {
-const totalBlog = await axios.get("https://olaniyihope.herokuapp.com/blogs");
+const totalBlog = await axios.get("http://localhost:5000/blogs");
 const start = totalBlog.data.length - 4;
 const end = totalBlog.data.length;
-const response = await axios.get(`https://olaniyihope.herokuapp.com/blogs?_start=${start}&_end=${end}`);
+const response = await axios.get(`http://localhost:5000/blogs?_start=${start}&_end=${end}`);
  if(response.status === 200) {
   setLatestBlog(response.data)
 }else{
@@ -50,7 +48,7 @@ console.log("data", data)
 const handleDelete = async (id) => {
   if(window.confirm("Are you sure you wanted to delete that blog ?")){
     
-      const response = await axios.delete(`https://olaniyihope.herokuapp.com/blogs/${id}`);
+      const response = await axios.delete(`http://localhost:5000/blogs/${id}`);
       if(response.status === 200) {
        toast.success("Blog deleted successfully");
        loadBlogsData();
@@ -73,7 +71,7 @@ setSearchValue(e.target.value);
 }
 const handleSearch = async(e) => {
 e.preventDefault();
-const response = await axios.get(`https://olaniyihope.herokuapp.com/blogs?q=${searchValue}`);
+const response = await axios.get(`http://localhost:5000/blogs?q=${searchValue}`);
 if(response.status === 200){
   setData(response.data)
 }else{
@@ -81,7 +79,7 @@ if(response.status === 200){
 }
 }
 const handleCategory = async (category) => {
-const response = await axios.get(`https://olaniyihope.herokuapp.com/blogs?category=${category}`);
+const response = await axios.get(`http://localhost:5000/blogs?category=${category}`);
 if(response.status === 200){
   setData(response.data)
 }else{
