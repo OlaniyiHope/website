@@ -1,5 +1,5 @@
 const express = require('express');
-const { createServer } =  require("http://localhost:5000/blogs");
+const { createServer } =  require("http");
 const path = require('path');
 const { log, error } = require('console');
 
